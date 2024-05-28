@@ -8,6 +8,11 @@ public abstract class Operateur{
 
     }
 
+    public Operateur(){
+        this.args = new Operateur[0];
+        this.isOperation = false;
+    }
+
     public int evaluer(Operateur op){
         
             if(op.isOperation) {
@@ -36,6 +41,11 @@ public abstract class Operateur{
     }
     public Operateur[] getArgs(){
         return this.args;
+    }
+
+    public void AddOperation(...Operateur op, boolean type){
+        this.args = op;
+        this.isOperation = type;
     }
 
 }
