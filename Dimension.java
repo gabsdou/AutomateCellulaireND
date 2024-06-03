@@ -23,10 +23,10 @@ public class Dimension implements TabDyn{
             }
         }
     }
-    
+
     public Dimension(int dimension, int length){
         int[] dimsize = new int[dimension];
-        for(int i : dimSize) 
+        for(int i : dimSize)
             i = length;
         this(dimension,0,dimsize);
     }
@@ -55,13 +55,10 @@ public class Dimension implements TabDyn{
         d.setValue(val);
     }
 
-
     private int getValue(){
         if(dimension > 0){
             return -1
         }
         return this;
     }
-
-    
 }

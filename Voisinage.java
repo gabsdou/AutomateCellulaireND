@@ -7,7 +7,6 @@ public class Voisinage implements Iterator{
     private int iteration;
     private Dimension dim
 
-    
     public Voisinage(int nbVoisin, int dimension, Dimension dim){
         this.nbVoisin = nbVoisin;
         this.dimension = dimension;
