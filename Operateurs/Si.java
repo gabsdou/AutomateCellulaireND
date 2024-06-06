@@ -1,4 +1,10 @@
+
+
 public class Si extends Operateur{
+    public Si(){
+        super(true);
+    }
+
     public int calcule(int[] arg){
         return arg[1] != 0 ? arg[2] : arg[3];
     }

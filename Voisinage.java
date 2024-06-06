@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Voisinage implements Iterator{
+public class Voisinage{
     private int nbVoisin;
     private int dimension;
     private int[][] n_plet;
@@ -19,17 +19,25 @@ public class Voisinage implements Iterator{
         if(iteration < nbVoisin){
             return true;
         }
+        resetIterator();
         return false;
     }
 
     public int[] next(){
         if(!hasNext()){
-            return NULL;
+            return null;
         }
         iteration++;
         return n_plet[iteration - 1];
     }
     public void resetIterator(){
         iteration = 0;
+    }
+    public int[][] getVoisinage(){
+        return n_plet;
+    }
+
+    public int getTaille(){
+        return nbVoisin;
     }
 }

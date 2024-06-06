@@ -1,8 +1,8 @@
 
 
-public class Dimension implements TabDyn{
+public class Dimension implements TabDyn {
     private int dimension;
-    private TabDyn[] case;
+    private TabDyn[] cellule;
     private int length;
 
 
@@ -10,47 +10,45 @@ public class Dimension implements TabDyn{
         this.dimension = dimension;
         length = dimSize[index];
         if(dimension > 1){
-            case = new TabDyn[length];
+            cellule = new TabDyn[length];
             for(int i = 0; i < length; i++){
-                case[i] = new Dimension(dimension-1,index+1,dimSize);
+                cellule[i] = new Dimension(dimension-1,index+1,dimSize);
             }
         }
         if(dimension == 1){
-            case = new TabDyn[length];
+            cellule = new TabDyn[length];
             for(int i = 0; i < length; i++){
-                case[i] = new Case();
+                cellule[i] = new Case();
             }
         }
     }
 
 
-    private TabDyn getDim(int i){
-        return case[i];
+    public TabDyn getDim(int i){
+        return cellule[i];
     }
 
-    private void SetValue(int val){
-        this.value = val;
+    public void setValue(int val) throws Exception{
+        throw new Exception("not a case");
     }
 
     public int get(int... coords){
-        TabDyn  d = dimension;
-        for(int i : coords){
+        TabDyn  d = cellule[coords[0]];
+        for(int i = 1; i < coords.length; i++){
             d = d.getDim(i);
         }
         return d.getValue();
     }
 
-      public int set(int... coords,int val){
-        TabDyn d = dimension;
-        for(int i : coords){
+      public void set(int val,int... coords){
+        TabDyn d = cellule[coords[0]];
+        for(int i = 1; i < coords.length; i++){
             d = d.getDim(i);
         }
-        if(d instanceof Case){
-            d.setValue(val);
-        }
-        else{
-            throw new Exception("not a case");
-        }
+
+        d.setValue(val);
+
+
 
     }
 
@@ -62,10 +60,7 @@ public class Dimension implements TabDyn{
         return length;
     }
 
-    private int getValue(){
-        if(dimension > 0){
-            return -1
-        }
-        return this;
+    public int getValue() throws Exception{
+        throw new Exception("not a case");
     }
 }

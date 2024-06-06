@@ -2,29 +2,25 @@ public class Case implements TabDyn{
     private int value;
 
     public Case(int value){
-        this.value = value; 
+        this.value = value;
     }
 
     public Case(){
         this(0);
     }
 
-    private TabDyn getDim(int i){
+    public TabDyn getDim(int i)throws Exception{
         throw new Exception("not a dimenssion");
-        return NULL;
+        return null;
     }
 
-    private void SetValue(int val){
+    public void setValue(int val)throws Exception{
         value = val;
     }
 
 
-    private int getValue(){
+    public int getValue()throws Exception{
         return value;
-    }
-
-    private TabDyn getDim(int i){
-        return this;
     }
 
 }
