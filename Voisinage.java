@@ -5,31 +5,25 @@ public class Voisinage implements Iterator{
     private int dimension;
     private int[][] n_plet;
     private int iteration;
-    private Dimension dim
+    public static int[] position;
 
-    public Voisinage(int nbVoisin, int dimension, Dimension dim){
+    public Voisinage(int nbVoisin, int dimension,int[][] n_plet){
         this.nbVoisin = nbVoisin;
-        this.dimension = dimension;
         iteration = 0;
-        this.dim = dim;
-        n_plet = new int[nbVoisin][dimension];
+        this.n_plet = n_plet;
 
     }
 
-    public Voisinage(int nbVoisin, int dimension){
-        this(nbVoisin,dimension,NULL);
-    }
 
-
-    public boolean hasVoisin(){
+    public boolean hasNext(){
         if(iteration < nbVoisin){
             return true;
         }
         return false;
     }
 
-    public int[] nextVoisin(){
-        if(!hasVoisin){
+    public int[] next(){
+        if(!hasNext()){
             return NULL;
         }
         iteration++;
@@ -37,12 +31,5 @@ public class Voisinage implements Iterator{
     }
     public void resetIterator(){
         iteration = 0;
-    }
-    public int nextValueFromVoisin(){
-        if(!hasVoisin){
-            return -1;
-        }
-        int[] nplet = nextVoisin();
-        return dim.get(nplet);
     }
 }

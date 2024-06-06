@@ -13,16 +13,16 @@ public abstract class Operateur{
         this.isOperation = false;
     }
 
-    public int evaluer(Operateur op){
-        
+    public static int evaluer(Operateur op){
+
             if(op.isOperation) {
                 return op.getValue();
             }
             else{
-                return this.calcule(NULL);
+                return op.calcule(getValue());
             }
     }
-//analyser caractère par caractère la phrase  
+//analyser caractère par caractère la phrase
 //Si c'est un chiffre, c'est une constante numérique
 //Si c'est des lettres, faut lire jusqu'a la parenthese ouvrante,
 // En gros faut lire jusqu'a une parenthese ouvrante, fermante ou virgule
@@ -43,9 +43,34 @@ public abstract class Operateur{
         return this.args;
     }
 
-    public void AddOperation(...Operateur op, boolean type){
+    public void AddOperation(...Operateur op){
         this.args = op;
-        this.isOperation = type;
+    }
+
+
+    public static Operateur buildTree(String s, int index){
+       int start = 0;
+       int parenthese = 0;
+       while(s[index] != '('){
+           index++;
+       }
+       parenthese++;
+       Operateur op = operratorFromString(s.substring(start,index));
+       start = index;
+       while(parathese != 0){
+           index++;
+           if(s[index] == '('){
+               parenthese++;
+           }
+           if(s[index] == ')'){
+               parenthese--;
+           }
+           if(s[index] == ','){
+               op.AddOperation(buildTree(s.substring(start,index),0));
+               start = index;
+           }
+       }
+       return op;
     }
 
 }

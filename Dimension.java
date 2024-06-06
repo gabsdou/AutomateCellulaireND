@@ -4,7 +4,6 @@ public class Dimension implements TabDyn{
     private int dimension;
     private TabDyn[] case;
     private int length;
-    private int value;
 
 
     public Dimension(int dimension, int index, int[] dimSize){
@@ -24,12 +23,6 @@ public class Dimension implements TabDyn{
         }
     }
 
-    public Dimension(int dimension, int length){
-        int[] dimsize = new int[dimension];
-        for(int i : dimSize)
-            i = length;
-        this(dimension,0,dimsize);
-    }
 
     private TabDyn getDim(int i){
         return case[i];
@@ -52,7 +45,21 @@ public class Dimension implements TabDyn{
         for(int i : coords){
             d = d.getDim(i);
         }
-        d.setValue(val);
+        if(d instanceof Case){
+            d.setValue(val);
+        }
+        else{
+            throw new Exception("not a case");
+        }
+
+    }
+
+    public int getPronfondeur(){
+        return dimension;
+    }
+
+    public int getLength(){
+        return length;
     }
 
     private int getValue(){

@@ -12,5 +12,8 @@ public class Main{
             posy = r.nextInt(inter.getHauteur());
             inter.colorierCase(posx,posy);
         }
+
+
+
     }
 }
