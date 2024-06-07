@@ -7,12 +7,18 @@ public class Compter extends Operateur{
     }
     public int calcule(int[] arg){
         int res = 0;
-        int[] coords = new int[voisinage.getTaille()];
+        int[] coords = new int[voisinage.position.length];
         for(int[] i : voisinage.getVoisinage()){
             for(int j = 0; j < i.length; j++){
-                coords[j] = i[j] + arg[j];
+                coords[j] = i[j] + Voisinage.position[j];
+
             }
-            res += Execution.getDimension().get(coords);
+            Dimension d = Execution.getDimension();
+            if(d == null){
+                System.out.println("d est null");
+            }
+
+            res += d.get(coords);
         }
         return res;
     }

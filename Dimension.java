@@ -1,3 +1,4 @@
+import java.util.*;
 
 
 public class Dimension implements TabDyn {
@@ -25,25 +26,40 @@ public class Dimension implements TabDyn {
 
 
     public TabDyn getDim(int i){
+        if(i >= cellule.length){
+            return null;
+        }
+        if(i < 0){
+            return null;
+        }
         return cellule[i];
     }
 
-    public void setValue(int val) throws Exception{
-        throw new Exception("not a case");
+    public void setValue(int val){
+        System.out.println("not a case");
     }
 
     public int get(int... coords){
-        TabDyn  d = cellule[coords[0]];
-        for(int i = 1; i < coords.length; i++){
-            d = d.getDim(i);
+        TabDyn  d = this.getDim(coords[0]);
+        if(d == null){
+            return 0;
         }
+        for(int i = 1; i < coords.length; i++){
+            if(d == null){
+                return 0;
+            }
+            d = d.getDim(coords[i]);
+        }
+        if(d == null){
+                return 0;
+            }
         return d.getValue();
     }
 
       public void set(int val,int... coords){
         TabDyn d = cellule[coords[0]];
         for(int i = 1; i < coords.length; i++){
-            d = d.getDim(i);
+            d = d.getDim(coords[i]);
         }
 
         d.setValue(val);
@@ -60,7 +76,8 @@ public class Dimension implements TabDyn {
         return length;
     }
 
-    public int getValue() throws Exception{
-        throw new Exception("not a case");
+    public int getValue(){
+        System.out.println("not a case");
+        return 0;
     }
 }

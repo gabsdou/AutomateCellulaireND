@@ -1,15 +1,19 @@
+
+
+
 public class Execution {
     private Operateur op;
-    private static Dimension dimension;
+    public static Dimension dimension;
 
     public Execution(Operateur op, Dimension dimension) {
         this.op = op;
         this.dimension = dimension;
     }
-    void run(int[] dimsize){
+    public void run(int[] dimsize){
         int max;
         int domain[] = new int[dimsize.length];
         int[] coords = new int[dimsize.length];
+        Dimension dimTmp = new Dimension(dimsize.length,0,dimsize);
         domain[0] = 1;
         max = dimsize[0];
         for(int i = 1; i < dimsize.length; i++){
@@ -17,12 +21,28 @@ public class Execution {
             domain[i] = domain[i-1] * dimsize[i];
             max *= dimsize[i];
         }
+         for(int i = 0; i < max; i++){
+            for(int j = 0; j < dimsize.length; j++){
+                coords[j] = (i / domain[j]) % dimsize[j];
+                //System.out.print(coords[j] + " ");
+            }
+        }
         for(int i = 0; i < max; i++){
             for(int j = 0; j < dimsize.length; j++){
                 coords[j] = (i / domain[j]) % dimsize[j];
+                //System.out.print(coords[j] + " ");
             }
+
             Voisinage.position = coords;
-            dimension.set(Operateur.evaluer(op),coords);
+            dimTmp.set(Operateur.evaluer(op),coords);
+
+        }
+        for(int i = 0; i < max; i++){
+            for(int j = 0; j < dimsize.length; j++){
+                coords[j] = (i / domain[j]) % dimsize[j];
+                //System.out.print(coords[j] + " ");
+            }
+            dimension.set(dimTmp.get(coords),coords);
         }
     }
 

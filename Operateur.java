@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 public abstract class Operateur{
     private ArrayList<Operateur> args;
     public boolean isOperation;
@@ -42,58 +43,74 @@ public abstract class Operateur{
 
 
     public static Operateur buildTree(String s, int index, Dictionary<String,Voisinage> gk){
-       int start = 0;
-       int parenthese = 0;
-       while(s.charAt(index) != '('){
-           index++;
-       }
-       parenthese++;
-       Operateur op = operratorFromString(s.substring(start,index));
-       start = index;
-       while(parenthese != 0){
-           index++;
-           if(s.charAt(index) == '('){
-               parenthese++;
-           }
-           if(s.charAt(index) == ')'){
-               parenthese--;
-           }
-           if(s.charAt(index) == ','){
-               op.AddOperation(buildTree(s.substring(start,index),0,gk));
-               start = index;
-           }
-       }
-       if(op instanceof Compter){
-           Compter c = (Compter)op;
-           c.setVoisinage(gk.get(s.substring(start,index)));
-       }
-       else{
-           op.AddOperation(buildTree(s.substring(start,index),0,gk));
-       }
-       return op;
+        if(s.charAt(0) == ','){
+            s = s.substring(1,s.length());
+        }
+        try{
+            int i = Integer.parseInt(s);
+            return new Valeur(i);
+        }catch(NumberFormatException e){}
+        System.out.println(s);
+        int start = 0;
+        int parenthese = 0;
+        while(s.charAt(index) != '('){
+            index++;
+        }
+        parenthese++;
+        System.out.println(s.substring(start,index));
+        Operateur op = operratorFromString(s.substring(start,index));
+        start = index;
+        while(parenthese != 0){
+            index++;
+            if(s.charAt(index) == '('){
+                parenthese++;
+            }
+            if(s.charAt(index) == ')'){
+                parenthese--;
+            }
+            if(s.charAt(index) == ',' && parenthese == 1){
+                op.AddOperation(buildTree(s.substring(start+1,index),0,gk));
+                start = index;
+            }
+        }
+        if(op instanceof Compter){
+            Compter c = (Compter)op;
+            System.out.println(s.substring(start+1,index));
+            c.setVoisinage(gk.get(s.substring(start+1,index)));
+        }
+        else{
+            op.AddOperation(buildTree(s.substring(start,index),0,gk));
+        }
+        return op;
     }
 
     public static Operateur operratorFromString(String s){
+        if(s.charAt(0) == ','){
+            s = s.substring(1,s.length());
+        }
         switch(s){
             case "SI":
                 return new Si();
-            case "Add":
+            case "ADD":
                 return new Add();
-            case "Sub":
+            case "SUB":
                 return new Sub();
-            case "Mul":
+            case "MUL":
                 return new Mul();
-            case "Non":
+            case "NON":
                 return new Non();
-            case "Ou":
+            case "OU":
                 return new Ou();
-            case "Sup":
+            case "SUP":
                 return new Sup();
-            case "Supeq":
+            case "EQ":
+                return new Eq();
+            case "SUPEQ":
                 return new Supeq();
-            case "Compter":
+            case "COMPTER":
                 return new Compter();
+            default:
+                return null;
         }
-        return null;
     }
 }

@@ -1,10 +1,10 @@
 public interface TabDyn{
 
-    public void setValue(int val) throws Exception;
+    public void setValue(int val);
 
-    public int getValue()throws Exception;
+    public int getValue();
 
-    public TabDyn getDim(int i)throws Exception;
+    public TabDyn getDim(int i);
 
 
 }
