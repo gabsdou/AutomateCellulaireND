@@ -22,6 +22,7 @@ public class Interface extends JPanel
 	private static final int VIEW_SIZE = 100; // Taille de la vue
 
 
+
 	/**
 	 * Constructeur.
 	 * @param largeur La largeur (en nombre de cases) de la grille affichée.
