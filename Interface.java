@@ -30,7 +30,7 @@ public class Interface extends JPanel
 		this.largeur = largeur;
 		this.hauteur = hauteur;
 		this.taille_case = taille_case;
-		casesAColorier = new ArrayList<>(25);
+		casesAColorier = new ArrayList<Point>(25);
 
 		JFrame window = new JFrame();
 		window.setSize(largeur*taille_case+50, hauteur*taille_case+50);
@@ -72,11 +72,10 @@ public class Interface extends JPanel
 	public void colorierCase(int x, int y)
 	{
 		casesAColorier.add(new Point(x, y));
-		repaint();
 	}
     public void tuerCase(int x, int y){
-        casesAColorier.remove(new Point(x, y));
-        repaint();
+		if(casesAColorier.contains(new Point(x, y)))
+        	casesAColorier.remove(new Point(x, y));
     }
 
 	/**

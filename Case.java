@@ -25,4 +25,8 @@ public class Case implements TabDyn{
         return value;
     }
 
+    public void addDimSize(ArrayList<Integer> dimSize){
+        return;
+    }
+
 }

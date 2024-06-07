@@ -109,6 +109,8 @@ public abstract class Operateur{
                 return new Supeq();
             case "COMPTER":
                 return new Compter();
+            case "ET":
+                return new Et();
             default:
                 return null;
         }

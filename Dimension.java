@@ -80,4 +80,16 @@ public class Dimension implements TabDyn {
         System.out.println("not a case");
         return 0;
     }
+
+    public void addDimSize(ArrayList<Integer> dimSize){
+        dimSize.add(length);
+        if(dimension > 1){
+            cellule[0].addDimSize(dimSize);
+        }
+    }
+
+    public static ArrayList<Integer> getDimSize(Dimension d,ArrayList<Integer> dimSize){
+        d.addDimSize(dimSize);
+        return dimSize;
+    }
 }

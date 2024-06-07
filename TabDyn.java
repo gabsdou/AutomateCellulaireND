@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public interface TabDyn{
 
     public void setValue(int val);
@@ -6,5 +8,6 @@ public interface TabDyn{
 
     public TabDyn getDim(int i);
 
+    public void addDimSize(ArrayList<Integer> dimSize);
 
 }
