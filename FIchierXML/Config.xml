@@ -1,10 +1,11 @@
 <Xmlconfig>
     <Dimension>2</Dimension>
-    <DimensionSize>{100,100}</DimensionSize>
+    <DimensionSize>{80,80}</DimensionSize>
+    <Coupe>{:,:}</Coupe>
     <Voisinage>
         <G8>{{-1,-1},{0,-1},{1,-1},{-1,0},{1,0},{-1,1},{0,1},{1,1}}</G8>
         <G8E>{-1,-1},{0,-1},{1,-1},{-1,0},{1,0},{-1,1},{0,1},{1,1},{0,0}</G8E>
     </Voisinage>
     <Regle>OU(SI(EQ(COMPTER(G8E),3),1,0),SI(EQ(COMPTER(G8),3),1,0))</Regle>
-    <Initialisation>{{50,50},{51,50},{52,50},{10,10},{11,11},{11,12},{10,12},{9,12}}</Initialisation>
+    <Initialisation>{{40,40},{41,40},{42,40},{10,10},{11,11},{11,12},{10,12},{9,12}}</Initialisation>
 </Xmlconfig>

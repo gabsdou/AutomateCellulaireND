@@ -1,6 +1,7 @@
 <Xmlconfig>
     <Dimension>2</Dimension>
     <DimensionSize>{25,25}</DimensionSize>
+    <Coupe>{:,:}</Coupe>
     <Voisinage>
         <G8>{{-1,-1},{0,-1},{1,-1},{-1,0},{1,0},{-1,1},{0,1},{1,1}}</G8>
         <G8E>{-1,-1},{0,-1},{1,-1},{-1,0},{1,0},{-1,1},{0,1},{1,1},{0,0}</G8E>

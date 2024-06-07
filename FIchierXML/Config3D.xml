@@ -1,0 +1,11 @@
+<Xmlconfig>
+    <Dimension>3</Dimension>
+    <DimensionSize>{25,25,25}</DimensionSize>
+    <Coupe>{:,:,0}</Coupe>
+    <Voisinage>
+        <G8>{{-1,-1,0},{0,-1,0},{1,-1,0},{-1,0,0},{1,0,0},{-1,1,0},{0,1,0},{1,1,0},{0,0,0}}</G8>
+        <G0>{{0,0}}</G0>
+    </Voisinage>
+    <Regle>SI(EQ(COMPTER(G0),1),SI(SUPEQ(COMPTER(G8),4),0,1),SI(EQ(COMPTER(G8),2),1,0))</Regle>
+    <Initialisation>{{5,5,0},{6,5,0},{7,5,0},{10,10,0},{11,11,0},{11,12,0},{10,12,0},{9,12,0}}</Initialisation>
+</Xmlconfig>

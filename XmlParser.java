@@ -14,6 +14,7 @@ public class XmlParser {
     Dictionary<String, Voisinage> gk;
     Operateur op;
     Execution e;
+    int[] coupe;  // Nouvelle variable pour stocker le tableau coupe
     public XmlParser(String path) {
         try {
             // Parse the XML file
@@ -35,6 +36,20 @@ public class XmlParser {
 
             d = new Dimension(dimension, 0, sizes);
             System.out.println("Dimension created");
+
+              // Read Coupe
+              Element coupeElement = (Element) doc.getElementsByTagName("Coupe").item(0);
+              String[] coupeParts = coupeElement.getTextContent().split(",");
+              coupe = new int[coupeParts.length];
+              for (int i = 0; i < coupeParts.length; i++) {
+                    coupeParts[i] = coupeParts[i].replaceAll("[{}]", ""); // Remove any remaining braces
+                  if (coupeParts[i].equals(":")) {
+                      coupe[i] = -1;
+                  } else {
+                      coupe[i] = Integer.parseInt(coupeParts[i]);
+                  }
+              }
+              System.out.println("Coupe created");
            
 
             // Read Voisinage
@@ -143,6 +158,10 @@ public class XmlParser {
 
     public Execution getExecution() {
         return e;
+    }
+
+    public int[] getCoupe() {
+        return coupe;
     }
     
     
