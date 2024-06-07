@@ -65,9 +65,9 @@ public class Main{
                     for(int j = 0; j < tab[1]; j++){
                         inter.tuerCase(j,i);
                         incr[x] = i;
-                        incr[y] = j;
+                        incr[x] = j;
                         if(d.get(incr) == 1){
-                            inter.colorierCase(j,i);
+                            inter.colorierCase(incr[x],incr[x]);
                         }
 
                     }

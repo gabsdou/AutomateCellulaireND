@@ -15,6 +15,7 @@ public class Interface extends JPanel
 	private int largeur, hauteur, taille_case;
 	private boolean play = true;
 	private int[][] casesAColorier;
+	
 
 	/**
 	 * Constructeur.
