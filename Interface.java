@@ -13,7 +13,7 @@ import javax.swing.JButton;
 public class Interface extends JPanel
 {
 	private int largeur, hauteur, taille_case;
-
+	private boolean play = true;
 	private int[][] casesAColorier;
 
 	/**
@@ -32,7 +32,7 @@ public class Interface extends JPanel
 		JButton monBouton = new JButton("STOP");
 		monBouton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.play = false;
+				play = !play;
 			}
 		});
 
@@ -42,6 +42,10 @@ public class Interface extends JPanel
 		window.add(this);
 		window.add(monBouton, "South");
 		window.setVisible(true);
+	}
+
+	public boolean getPlay(){
+		return play;
 	}
 
 	@Override

@@ -6,7 +6,6 @@ import java.util.*;
 
 
 public class Main{
-    static Boolean play= true;
     public static void main(String[] args){
         XmlParser xml = new XmlParser(args[0]);
         int[] incr = xml.getCoupe();
@@ -39,12 +38,8 @@ public class Main{
             inter = new Interface(tab[y],tab[x],8);
         }
         while(true){
-            while(play == false){
-                try{
-                    Thread.sleep(1000);
-                }catch(InterruptedException ex){
-                    System.out.println("erreur");
-                }
+            while(inter.getPlay() == false){
+                continue;
             }
             if(tab.length == 1){
                 for(int i=0;i< tab[0];i++){
