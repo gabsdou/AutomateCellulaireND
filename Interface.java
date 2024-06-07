@@ -51,7 +51,7 @@ public class Interface extends JPanel
 			{
 				if (casesAColorier[i][j] == 1)
 				{
-					g.setColor(Color.RED);
+					g.setColor(Color.BLUE);
 					g.fillRect(taille_case + (i * taille_case), taille_case + (j * taille_case), taille_case, taille_case);
 				}
 			}

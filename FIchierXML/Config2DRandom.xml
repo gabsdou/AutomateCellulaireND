@@ -7,5 +7,6 @@
         <G8E>{-1,-1},{0,-1},{1,-1},{-1,0},{1,0},{-1,1},{0,1},{1,1},{0,0}</G8E>
     </Voisinage>
     <Regle>OU(SI(EQ(COMPTER(G8E),3),1,0),SI(EQ(COMPTER(G8),3),1,0))</Regle>
-    <Initialisation>{{60,60},{61,61},{62,60},{62,58},{62,57},{63,57},{63,56},{65,58},{67,59},{67,60},{69,58},{70,57},{72,59},{72,60},{72,60},{73,62},{74,62},{74,61}}</Initialisation>
+    <Initialisation></Initialisation>
+    <InitialisationRandom>50</InitialisationRandom>
 </Xmlconfig>

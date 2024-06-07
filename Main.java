@@ -40,7 +40,7 @@ public class Main{
             if(tab.length == 1){
                 for(int i=0;i< tab[0];i++){
                     try{
-                        Thread.sleep(500);
+                        Thread.sleep(50);
                     }catch(InterruptedException ex){
                         System.out.println("erreur");
                     }
@@ -69,7 +69,7 @@ public class Main{
                     }
                 }
                 try{
-                    Thread.sleep(1);
+                    Thread.sleep(50);
                 }catch(InterruptedException ex){
                     System.out.println("erreur");
                 }
