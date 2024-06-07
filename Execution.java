@@ -18,7 +18,7 @@ public class Execution {
         max = dimsize[0];
         for(int i = 1; i < dimsize.length; i++){
             domain[i] = 1;
-            domain[i] = domain[i-1] * dimsize[i];
+            domain[i] = domain[i-1] * dimsize[i - 1];
             max *= dimsize[i];
         }
          for(int i = 0; i < max; i++){

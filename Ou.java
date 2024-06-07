@@ -5,6 +5,11 @@ public class Ou extends Operateur{
         super(true);
     }
     public int calcule(int[] arg){
-        return arg[0] | arg[1];
+        for(int i = 0; i < arg.length; i++){
+            if(arg[i] == 1){
+                return 1;
+            }
+        }
+        return 0;
     }
 }

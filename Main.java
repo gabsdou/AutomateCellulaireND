@@ -29,7 +29,13 @@ public class Main{
         ArrayList<Integer> coord = new ArrayList<Integer>();
         Dimension.getDimSize(d, coord);
         int[] tab = coord.stream().mapToInt(i -> i).toArray();
-        Interface inter = new Interface(tab[y],tab[x],8);
+        Interface inter = null;
+        if(tab.length == 1){
+            inter = new Interface(tab[x],tab[x],8);    
+        }
+        else{
+            inter = new Interface(tab[y],tab[x],8);
+        }   
         while(true){
             if(tab.length == 1){
                 for(int i=0;i< tab[0];i++){
@@ -63,7 +69,7 @@ public class Main{
                     }
                 }
                 try{
-                    Thread.sleep(500);
+                    Thread.sleep(1);
                 }catch(InterruptedException ex){
                     System.out.println("erreur");
                 }

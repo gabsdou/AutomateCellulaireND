@@ -1,11 +1,12 @@
 <Xmlconfig>
     <Dimension>1</Dimension>
-    <DimensionSize>{100}</DimensionSize>
+    <DimensionSize>{1000}</DimensionSize>
     <Coupe>{:}</Coupe>
     <Voisinage>
-        <G1>{{-1},{1}}</G1>
-        <G2>{{-1},{0},{1}}</G2>
+        <G1D>{{-1}}</G1D>
+        <G1G>{{1}}</G1G>
+        <G0>{{0}}</G0>
     </Voisinage>
-    <Regle>ET(EQ(COMPTER(G2),1),EQ(COMPTER(G1),1))</Regle>
+    <Regle>OU(OU(OU(ET(EQ(COMPTER(G1G),1),EQ(COMPTER(G0),1),EQ(COMPTER(G1D),0)),ET(EQ(COMPTER(G0),0),EQ(COMPTER(G1G),1),EQ(COMPTER(G1D),1))),ET(EQ(COMPTER(G0),1),EQ(COMPTER(G1D),1),EQ(COMPTER(G1G),0))),OU(ET(EQ(COMPTER(G0),0),EQ(COMPTER(G1G),0),EQ(COMPTER(G1D),1)),ET(EQ(COMPTER(G0),1),EQ(COMPTER(G1D),0),EQ(COMPTER(G1G),0))))</Regle>
     <Initialisation>{50}</Initialisation>
 </Xmlconfig>
