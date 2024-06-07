@@ -3,8 +3,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.Random;
 
 public class XmlParser {
     Dimension d;
@@ -75,21 +78,54 @@ public class XmlParser {
             // Read Initialisation
             Element initialisationElement = (Element) doc.getElementsByTagName("Initialisation").item(0);
             String initContent = initialisationElement.getTextContent();
-            String[] initParts = initContent.substring(1, initContent.length() - 1).split("\\},\\{");
-            System.out.println(initParts[0]);
-            for (String part : initParts) {
-                part = part.replaceAll("[{}]", ""); // Remove any remaining braces
-                String[] coord = part.split(",");
-                int[] intCoord = new int[coord.length];
-                for (int i = 0; i < coord.length; i++) {
-                    intCoord[i] = Integer.parseInt(coord[i]);
+            if (!initContent.trim().isEmpty()) {
+                String[] initParts = initContent.substring(1, initContent.length() - 1).split("\\},\\{");
+                System.out.println(initParts[0]);
+                for (String part : initParts) {
+                    part = part.replaceAll("[{}]", ""); // Remove any remaining braces
+                    String[] coord = part.split(",");
+                    int[] intCoord = new int[coord.length];
+                    for (int i = 0; i < coord.length; i++) {
+                        intCoord[i] = Integer.parseInt(coord[i]);
+                    }
+                    // Assuming d.set method can handle variable length coordinates
+                    d.set(1, intCoord);
                 }
-                // Assuming d.set method can handle variable length coordinates
-                d.set(1, intCoord);
+                System.out.println("Initialisation completed");
+            } else {
+                System.out.println("Initialisation is empty");
             }
             System.out.println("Initialisation completed");
+
+            // Read InitialisationRandom
+            Element initialisationRandomElement = (Element) doc.getElementsByTagName("InitialisationRandom").item(0);
+            if (initialisationRandomElement != null) {
+                int percentage = Integer.parseInt(initialisationRandomElement.getTextContent());
+                initializeRandomCells(percentage);
+                System.out.println("InitialisationRandom completed with " + percentage + "% cells set.");
+            }
+
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void initializeRandomCells(int percentage) {
+        Random random = new Random();
+        int totalCells = 1;
+        ArrayList<Integer> sizes = new ArrayList<Integer>();
+        Dimension.getDimSize(d, sizes);
+        for (int size : sizes) {
+            totalCells *= size;
+        }
+
+        int cellsToSet = totalCells * percentage / 100;
+        for (int i = 0; i < cellsToSet; i++) {
+            int[] coords = new int[sizes.size()];
+            for (int j = 0; j < coords.length; j++) {
+                coords[j] = random.nextInt(sizes.get(j));
+            }
+            d.set(1, coords);
         }
     }
 

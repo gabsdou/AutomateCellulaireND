@@ -1,0 +1,11 @@
+<Xmlconfig>
+    <Dimension>2</Dimension>
+    <DimensionSize>{25,25}</DimensionSize>
+    <Voisinage>
+        <G8>{{-1,-1},{0,-1},{1,-1},{-1,0},{1,0},{-1,1},{0,1},{1,1}}</G8>
+        <G8E>{-1,-1},{0,-1},{1,-1},{-1,0},{1,0},{-1,1},{0,1},{1,1},{0,0}</G8E>
+    </Voisinage>
+    <Regle>OU(SI(EQ(COMPTER(G8E),3),1,0),SI(EQ(COMPTER(G8),3),1,0))</Regle>
+    <Initialisation></Initialisation>
+    <InitialisationRandom>50</InitialisationRandom>
+</Xmlconfig>
