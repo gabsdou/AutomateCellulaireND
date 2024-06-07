@@ -1,15 +1,11 @@
-
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.JButton;
 
 //Merci à StackOverflow pour sa précieuse contribution !
 
@@ -27,16 +23,24 @@ public class Interface extends JPanel
 	 */
 	public Interface(int largeur, int hauteur, int taille_case)
 	{
+
 		this.largeur = largeur;
 		this.hauteur = hauteur;
 		this.taille_case = taille_case;
 		//tableau de cases à colorier
 		casesAColorier = new int[largeur][hauteur];
+		JButton monBouton = new JButton("STOP");
+		monBouton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.play = false;
+			}
+		});
 
 		JFrame window = new JFrame();
 		window.setSize(largeur*taille_case+50, hauteur*taille_case+50);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.add(this);
+		window.add(monBouton, "South");
 		window.setVisible(true);
 	}
 
