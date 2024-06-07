@@ -1,5 +1,4 @@
-import javax.swing.JFrame;
-import java.util.Random;
+
 import java.util.*;
 
 
@@ -30,6 +29,7 @@ public class Main{
         ArrayList<Integer> coord = new ArrayList<Integer>();
         Dimension.getDimSize(d, coord);
         int[] tab = coord.stream().mapToInt(i -> i).toArray();
+        System.out.println(tab[0]);
         Interface inter = null;
         if(tab.length == 1){
             inter = new Interface(tab[x],tab[x],8);
@@ -42,14 +42,17 @@ public class Main{
                 continue;
             }
             if(tab.length == 1){
-                for(int i=0;i< tab[0];i++){
+                for(int i=0;i< 100;i++){
                     try{
-                        Thread.sleep(50);
+                        Thread.sleep(100);
                     }catch(InterruptedException ex){
                         System.out.println("erreur");
                     }
-                    for(int j = 0; j < tab[0]; j++){
+
+                    for(int j = 0; j < 100; j++){
                         inter.tuerCase(j,i);
+                        incr[x] = j + inter.getViewX();
+                        //incr[y] = i + inter.getViewY();
                         if(d.get(j) == 1){
                             inter.colorierCase(j,i);
                         }
@@ -60,7 +63,11 @@ public class Main{
                 }
             }
             else{// +1 dimension
-
+                try{
+                    Thread.sleep(10);
+                }catch(InterruptedException ex){
+                    System.out.println("erreur");
+                }
                 for(int i=0;i< 100;i++){
                     for(int j = 0; j < 100; j++){
                         inter.tuerCase(j,i);

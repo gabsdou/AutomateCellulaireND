@@ -1,6 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JFrame;
@@ -40,7 +40,7 @@ public class Interface extends JPanel
 		monBouton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				play = !play;
-				
+
 			}
 		});
 
@@ -90,7 +90,7 @@ public class Interface extends JPanel
 	}
 	public int getViewY() {
 		return viewY;
-	}	
+	}
 
 	@Override
 	//Fonction d'affichage de la grille.
