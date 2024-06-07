@@ -18,7 +18,7 @@ public class Interface extends JPanel
 {
 	private int largeur, hauteur, taille_case;
 
-	private List<Point> casesAColorier;
+	private int[][] casesAColorier;
 
 	/**
 	 * Constructeur.
@@ -30,7 +30,8 @@ public class Interface extends JPanel
 		this.largeur = largeur;
 		this.hauteur = hauteur;
 		this.taille_case = taille_case;
-		casesAColorier = new ArrayList<Point>(25);
+		//tableau de cases à colorier
+		casesAColorier = new int[largeur][hauteur];
 
 		JFrame window = new JFrame();
 		window.setSize(largeur*taille_case+50, hauteur*taille_case+50);
@@ -44,13 +45,18 @@ public class Interface extends JPanel
 	protected void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		for (Point fillCell : casesAColorier)
+		for (int i = 0; i < largeur; i++)
 		{
-			int cellX = taille_case + (fillCell.x * taille_case);
-			int cellY = taille_case + (fillCell.y * taille_case);
-			g.setColor(Color.BLUE);
-			g.fillRect(cellX, cellY, taille_case, taille_case);
+			for (int j = 0; j < hauteur; j++)
+			{
+				if (casesAColorier[i][j] == 1)
+				{
+					g.setColor(Color.RED);
+					g.fillRect(taille_case + (i * taille_case), taille_case + (j * taille_case), taille_case, taille_case);
+				}
+			}
 		}
+
 
 		g.setColor(Color.BLACK);
 		g.drawRect(taille_case, taille_case, largeur*taille_case, hauteur*taille_case);
@@ -71,11 +77,10 @@ public class Interface extends JPanel
 	 */
 	public void colorierCase(int x, int y)
 	{
-		casesAColorier.add(new Point(x, y));
+		casesAColorier[x][y] = 1;
 	}
     public void tuerCase(int x, int y){
-		if(casesAColorier.contains(new Point(x, y)))
-        	casesAColorier.remove(new Point(x, y));
+		casesAColorier[x][y] = 0;
     }
 
 	/**

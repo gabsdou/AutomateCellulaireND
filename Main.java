@@ -21,7 +21,7 @@ public class Main{
                 y = i;
                 break;
             }
-            
+
         }
         Dimension d = xml.getDimension();
         Operateur op = xml.getOperateur();
@@ -43,14 +43,14 @@ public class Main{
                         if(d.get(j) == 1){
                             inter.colorierCase(j,i);
                         }
-                        
+
                     }
                     e.run(tab);
                     inter.repaint();
                 }
             }
             else{// +1 dimension
-                
+
                 for(int i=0;i< tab[0];i++){
                     for(int j = 0; j < tab[1]; j++){
                         inter.tuerCase(j,i);
@@ -59,11 +59,11 @@ public class Main{
                         if(d.get(incr) == 1){
                             inter.colorierCase(j,i);
                         }
-                        
+
                     }
                 }
                 try{
-                    Thread.sleep(500);
+                    Thread.sleep(100);
                 }catch(InterruptedException ex){
                     System.out.println("erreur");
                 }
@@ -71,8 +71,8 @@ public class Main{
                 inter.repaint();
             }
 
-           
-           
+
+
         }
 
 
