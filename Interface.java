@@ -35,7 +35,7 @@ public class Interface extends JPanel
 		this.hauteur = 100;
 		this.taille_case = taille_case;
 		//tableau de cases à colorier
-		casesAColorier = new int[largeurs][hauteurs];
+		casesAColorier = new int[VIEW_SIZE][VIEW_SIZE];
 		JButton monBouton = new JButton("STOP");
 		monBouton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -51,6 +51,8 @@ public class Interface extends JPanel
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.add(this);
 		window.add(monBouton, "South");
+		window.setFocusable(true);
+		window.requestFocusInWindow();
 		window.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				int key = e.getKeyCode();
@@ -58,19 +60,18 @@ public class Interface extends JPanel
 				// Utilisez un switch ou des if pour gérer les différentes touches
 				switch (key) {
 					case KeyEvent.VK_UP:
-                    	viewY = Math.max(0, viewY - 1); // Déplace la vue vers le haut
+                    	--viewY; // Déplace la vue vers le haut
                     	break;
                 	case KeyEvent.VK_DOWN:
-                    	viewY = Math.min(hauteurs - VIEW_SIZE, viewY + 1); // Déplace la vue vers le bas
+                    	++viewY; // Déplace la vue vers le bas
                     	break;
                 	case KeyEvent.VK_LEFT:
-                    	viewX = Math.max(0, viewX - 1); // Déplace la vue vers la gauche
+                    	++viewX; // Déplace la vue vers la gauche
                    		break;
                 	case KeyEvent.VK_RIGHT:
-                    	viewX = Math.min(largeurs - VIEW_SIZE, viewX + 1); // Déplace la vue vers la droite
+                    	--viewX; // Déplace la vue vers la droite
                     	break;
 				}
-				repaint();
 			}
 		});
 
@@ -78,22 +79,30 @@ public class Interface extends JPanel
 		window.setVisible(true);
 	}
 
+
 	public boolean getPlay(){
 		return play;
 	}
+
+	public int getViewX() {
+		return viewX;
+	}
+	public int getViewY() {
+		return viewY;
+	}	
 
 	@Override
 	//Fonction d'affichage de la grille.
 	protected void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		for (int i = viewX; i < viewX+VIEW_SIZE; i++)
+		g.setColor(Color.BLUE);
+		for (int i = 0; i < VIEW_SIZE; i++)
 		{
-			for (int j = viewY; j < viewY+VIEW_SIZE; j++)
+			for (int j = 0; j < VIEW_SIZE; j++)
 			{
 				if (casesAColorier[i][j] == 1)
 				{
-					g.setColor(Color.BLUE);
 					g.fillRect(taille_case + (i * taille_case), taille_case + (j * taille_case), taille_case, taille_case);
 				}
 			}
@@ -101,14 +110,14 @@ public class Interface extends JPanel
 
 
 		g.setColor(Color.BLACK);
-		g.drawRect(taille_case, taille_case, largeur*taille_case, hauteur*taille_case);
+		g.drawRect(taille_case, taille_case, VIEW_SIZE*taille_case,VIEW_SIZE*hauteur*taille_case);
 
-		for (int i = taille_case; i <= largeur*taille_case; i += taille_case) {
-			g.drawLine(i, taille_case, i, hauteur*taille_case+taille_case);
+		for (int i = taille_case; i <= VIEW_SIZE*taille_case; i += taille_case) {
+			g.drawLine(i, taille_case, i, VIEW_SIZE*taille_case+taille_case);
 		}
 
-		for (int i = taille_case; i <= hauteur*taille_case; i += taille_case) {
-			g.drawLine(taille_case, i, largeur*taille_case+taille_case, i);
+		for (int i = taille_case; i <= VIEW_SIZE*taille_case; i += taille_case) {
+			g.drawLine(taille_case, i, VIEW_SIZE*taille_case+taille_case, i);
 		}
 	}
 

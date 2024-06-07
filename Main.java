@@ -61,13 +61,13 @@ public class Main{
             }
             else{// +1 dimension
 
-                for(int i=0;i< tab[0];i++){
-                    for(int j = 0; j < tab[1]; j++){
+                for(int i=0;i< 100;i++){
+                    for(int j = 0; j < 100; j++){
                         inter.tuerCase(j,i);
-                        incr[x] = i;
-                        incr[x] = j;
+                        incr[y] = i + inter.getViewY();
+                        incr[x] = j + inter.getViewY();
                         if(d.get(incr) == 1){
-                            inter.colorierCase(incr[x],incr[x]);
+                            inter.colorierCase(j,i);
                         }
 
                     }
