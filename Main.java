@@ -6,8 +6,6 @@ import java.util.*;
 
 
 public class Main{
-    final static int H = 100;
-    final static int W = 100;
     public static void main(String[] args){
         XmlParser xml = new XmlParser(args[0]);
         int[] incr = xml.getCoupe();
@@ -31,7 +29,7 @@ public class Main{
         ArrayList<Integer> coord = new ArrayList<Integer>();
         Dimension.getDimSize(d, coord);
         int[] tab = coord.stream().mapToInt(i -> i).toArray();
-        Interface inter = new Interface(tab[0],tab[0],8);
+        Interface inter = new Interface(tab[y],tab[x],8);
         while(true){
             if(tab.length == 1){
                 for(int i=0;i< tab[0];i++){
@@ -51,7 +49,7 @@ public class Main{
                     inter.repaint();
                 }
             }
-            else{
+            else{// +1 dimension
                 
                 for(int i=0;i< tab[0];i++){
                     for(int j = 0; j < tab[1]; j++){
