@@ -6,6 +6,7 @@ import java.util.*;
 
 
 public class Main{
+    static Boolean play= true;
     public static void main(String[] args){
         XmlParser xml = new XmlParser(args[0]);
         int[] incr = xml.getCoupe();
@@ -21,26 +22,34 @@ public class Main{
                 y = i;
                 break;
             }
-            
+
         }
         Dimension d = xml.getDimension();
         Operateur op = xml.getOperateur();
         Execution e = new Execution(op,d);
+
         ArrayList<Integer> coord = new ArrayList<Integer>();
         Dimension.getDimSize(d, coord);
         int[] tab = coord.stream().mapToInt(i -> i).toArray();
         Interface inter = null;
         if(tab.length == 1){
-            inter = new Interface(tab[x],tab[x],8);    
+            inter = new Interface(tab[x],tab[x],8);
         }
         else{
             inter = new Interface(tab[y],tab[x],8);
-        }   
+        }
         while(true){
+            while(play == false){
+                try{
+                    Thread.sleep(1000);
+                }catch(InterruptedException ex){
+                    System.out.println("erreur");
+                }
+            }
             if(tab.length == 1){
                 for(int i=0;i< tab[0];i++){
                     try{
-                        Thread.sleep(500);
+                        Thread.sleep(50);
                     }catch(InterruptedException ex){
                         System.out.println("erreur");
                     }
@@ -49,14 +58,14 @@ public class Main{
                         if(d.get(j) == 1){
                             inter.colorierCase(j,i);
                         }
-                        
+
                     }
                     e.run(tab);
                     inter.repaint();
                 }
             }
             else{// +1 dimension
-                
+
                 for(int i=0;i< tab[0];i++){
                     for(int j = 0; j < tab[1]; j++){
                         inter.tuerCase(j,i);
@@ -65,7 +74,7 @@ public class Main{
                         if(d.get(incr) == 1){
                             inter.colorierCase(j,i);
                         }
-                        
+
                     }
                 }
                 try{
@@ -77,8 +86,8 @@ public class Main{
                 inter.repaint();
             }
 
-           
-           
+
+
         }
 
 
