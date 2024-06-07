@@ -65,7 +65,7 @@ public class Main{
                     for(int j = 0; j < 100; j++){
                         inter.tuerCase(j,i);
                         incr[y] = i + inter.getViewY();
-                        incr[x] = j + inter.getViewY();
+                        incr[x] = j + inter.getViewX();
                         if(d.get(incr) == 1){
                             inter.colorierCase(j,i);
                         }

@@ -40,6 +40,7 @@ public class Interface extends JPanel
 		monBouton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				play = !play;
+				
 			}
 		});
 
@@ -66,10 +67,10 @@ public class Interface extends JPanel
                     	++viewY; // Déplace la vue vers le bas
                     	break;
                 	case KeyEvent.VK_LEFT:
-                    	++viewX; // Déplace la vue vers la gauche
+                    	--viewX; // Déplace la vue vers la gauche
                    		break;
                 	case KeyEvent.VK_RIGHT:
-                    	--viewX; // Déplace la vue vers la droite
+                    	++viewX; // Déplace la vue vers la droite
                     	break;
 				}
 			}
