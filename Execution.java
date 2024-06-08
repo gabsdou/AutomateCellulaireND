@@ -18,11 +18,6 @@ public class Execution {
             domain[i] = domain[i-1]*dimsize[i-1];
             max *= dimsize[i];
         }
-         for(int i = 0; i < max; i++){
-            for(int j = 0; j < dimsize.length; j++){
-                coords[j] = (i / domain[j]) % dimsize[j];
-            }
-        }
         for(int i = 0; i < max; i++){
             for(int j = 0; j < dimsize.length; j++){
                 coords[j] = (i / domain[j]) % dimsize[j];

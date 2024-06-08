@@ -15,6 +15,7 @@ public class Interface extends JPanel
 	private int viewX = 0; // Coordonnée x de la vue
 	private int viewY = 0; // Coordonnée y de la vue
 	private static final int VIEW_SIZE = 100; // Taille de la vue
+	JFrame window ;
 
 	public Interface(int largeurs, int hauteurs, int taille_case)
 	{
@@ -27,9 +28,20 @@ public class Interface extends JPanel
 		monBouton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				play = !play;
+<<<<<<< Updated upstream
 			}
 		});
 		JFrame window = new JFrame();
+=======
+				refocus();
+			}
+		});
+
+
+
+
+		window = new JFrame();
+>>>>>>> Stashed changes
 		window.setSize(largeur*taille_case+50, hauteur*taille_case+50);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.add(this);
@@ -58,6 +70,14 @@ public class Interface extends JPanel
 		window.setVisible(true);
 	}
 
+<<<<<<< Updated upstream
+=======
+	public void refocus(){
+		window.requestFocusInWindow();
+	}
+
+
+>>>>>>> Stashed changes
 	public boolean getPlay(){
 		return play;
 	}
