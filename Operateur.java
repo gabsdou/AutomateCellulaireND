@@ -1,38 +1,28 @@
 import java.util.*;
 
-
 public abstract class Operateur{
     private ArrayList<Operateur> args;
     public boolean isOperation;
-
-
 
     public Operateur(boolean isOperation){
         this.args = new ArrayList<Operateur>();
         this.isOperation = isOperation;
     }
-
     public static int evaluer(Operateur op){
 
         return op.getValue();
     }
-//analyser caractère par caractère la phrase
-//Si c'est un chiffre, c'est une constante numérique
-//Si c'est des lettres, faut lire jusqu'a la parenthese ouvrante,
-// En gros faut lire jusqu'a une parenthese ouvrante, fermante ou virgule
-// Construire un arbre, avec des noeuds
+
     public abstract int calcule(int[] c);
-
-
 
     public int getValue(){
         int[] values = new int[args.size()];
-
         for(int i = 0; i < args.size(); i++){
             values[i] = evaluer(args.get(i));
         }
         return calcule(values);
     }
+
     public ArrayList<Operateur> getArgs(){
         return this.args;
     }
@@ -40,7 +30,6 @@ public abstract class Operateur{
     public void AddOperation(Operateur op){
         this.args.add(op);
     }
-
 
     public static Operateur buildTree(String s, int index, Dictionary<String,Voisinage> gk){
         if(s.charAt(0) == ','){

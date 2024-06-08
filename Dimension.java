@@ -1,11 +1,9 @@
 import java.util.*;
 
-
 public class Dimension implements TabDyn {
     private int dimension;
     private TabDyn[] cellule;
     private int length;
-
 
     public Dimension(int dimension, int index, int[] dimSize){
         this.dimension = dimension;
@@ -23,7 +21,6 @@ public class Dimension implements TabDyn {
             }
         }
     }
-
 
     public TabDyn getDim(int i){
         if(i >= cellule.length){
@@ -61,21 +58,15 @@ public class Dimension implements TabDyn {
         for(int i = 1; i < coords.length; i++){
             d = d.getDim(coords[i]);
         }
-
         d.setValue(val);
-
-
-
     }
 
     public int getPronfondeur(){
         return dimension;
     }
-
     public int getLength(){
         return length;
     }
-
     public int getValue(){
         System.out.println("not a case");
         return 0;
@@ -87,7 +78,6 @@ public class Dimension implements TabDyn {
             cellule[0].addDimSize(dimSize);
         }
     }
-
     public static ArrayList<Integer> getDimSize(Dimension d,ArrayList<Integer> dimSize){
         d.addDimSize(dimSize);
         return dimSize;

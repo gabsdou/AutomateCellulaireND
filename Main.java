@@ -1,8 +1,4 @@
-
 import java.util.*;
-
-
-
 
 public class Main{
     public static void main(String[] args){
@@ -25,7 +21,6 @@ public class Main{
         Dimension d = xml.getDimension();
         Operateur op = xml.getOperateur();
         Execution e = new Execution(op,d);
-
         ArrayList<Integer> coord = new ArrayList<Integer>();
         Dimension.getDimSize(d, coord);
         int[] tab = coord.stream().mapToInt(i -> i).toArray();
@@ -41,22 +36,19 @@ public class Main{
             while(inter.getPlay() == false){
                 continue;
             }
-            if(tab.length == 1){
+            if(tab.length == 1){//TODO : REPARER
                 for(int i=0;i< 100;i++){
                     try{
                         Thread.sleep(100);
                     }catch(InterruptedException ex){
                         System.out.println("erreur");
                     }
-
                     for(int j = 0; j < 100; j++){
                         inter.tuerCase(j,i);
                         incr[x] = j + inter.getViewX();
-                        //incr[y] = i + inter.getViewY();
                         if(d.get(j) == 1){
                             inter.colorierCase(j,i);
                         }
-
                     }
                     e.run(tab);
                     inter.repaint();
@@ -76,7 +68,6 @@ public class Main{
                         if(d.get(incr) == 1){
                             inter.colorierCase(j,i);
                         }
-
                     }
                 }
                 try{
@@ -87,12 +78,6 @@ public class Main{
                 e.run(tab);
                 inter.repaint();
             }
-
-
-
         }
-
-
-
     }
 }

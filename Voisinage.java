@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class Voisinage{
     private int nbVoisin;
     private int dimension;
@@ -11,10 +9,7 @@ public class Voisinage{
         this.nbVoisin = nbVoisin;
         iteration = 0;
         this.n_plet = n_plet;
-
     }
-
-
     public boolean hasNext(){
         if(iteration < nbVoisin){
             return true;
@@ -22,7 +17,6 @@ public class Voisinage{
         resetIterator();
         return false;
     }
-
     public int[] next(){
         if(!hasNext()){
             return null;
@@ -36,7 +30,6 @@ public class Voisinage{
     public int[][] getVoisinage(){
         return n_plet;
     }
-
     public int getTaille(){
         return nbVoisin;
     }

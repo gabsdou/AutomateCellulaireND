@@ -20,7 +20,6 @@ public class Case implements TabDyn{
         value = val;
     }
 
-
     public int getValue(){
         return value;
     }
@@ -28,5 +27,4 @@ public class Case implements TabDyn{
     public void addDimSize(ArrayList<Integer> dimSize){
         return;
     }
-
 }
