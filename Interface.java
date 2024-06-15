@@ -78,6 +78,8 @@ public class Interface extends JPanel
 		loadXmlFileNames();
         JList<String> fileList = new JList<>(xmlFileNames);
         fileList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		fileList.setForeground(Color.WHITE);
+		fileList.setBackground(Color.getHSBColor(0,0f, 0.140f));
         fileList.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 String selectedFile = fileList.getSelectedValue();
