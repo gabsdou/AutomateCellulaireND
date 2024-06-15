@@ -3,8 +3,6 @@
     <DimensionSize>{25,25}</DimensionSize>
     <Coupe>{:,:}</Coupe>
     <Voisinage>
-        <G8>{{-1,-1},{0,-1},{1,-1},{-1,0},{1,0},{-1,1},{0,1},{1,1},{0,0}}</G8>
-        <G0>{{0,0}}</G0>
     </Voisinage>
     <Regle>SI(EQ(COMPTER(G0),1),SI(SUPEQ(COMPTER(G8),4),0,1),SI(EQ(COMPTER(G8),2),1,0))</Regle>
     <Initialisation>{{5,5},{6,5},{7,5},{10,10},{11,11},{11,12},{10,12},{9,12}}</Initialisation>
