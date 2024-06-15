@@ -32,7 +32,7 @@ public class XmlParser{
             }
 
             d = new Dimension(dimension, 0, sizes);
-            System.out.println("Dimension created");
+            System.out.println("Dimension creer");
 
             Element coupeElement = (Element) doc.getElementsByTagName("Coupe").item(0);
             String[] coupeParts = coupeElement.getTextContent().split(",");
@@ -45,7 +45,7 @@ public class XmlParser{
                     coupe[i] = Integer.parseInt(coupeParts[i]);
                 }
             }
-            System.out.println("Coupe created");
+            System.out.println("Coupe creer");
             gk = new Hashtable<String,Voisinage>();
             //voisinages par défaut
             gk.put("G0",new Voisinage(1, 1, new int[][]{{0}}));
@@ -76,11 +76,11 @@ public class XmlParser{
                         gk.put(name, v);
                 }
             }
-            System.out.println("Voisinage created");
+            System.out.println("Voisinage creer");
             Element regleElement = (Element) doc.getElementsByTagName("Regle").item(0);
             String regle = regleElement.getTextContent();
             op = Operateur.buildTree(regle, 0, gk);
-            System.out.println("Arbre created");
+            System.out.println("Arbre creer");
             e = new Execution(op, d);
             Element initialisationElement = (Element) doc.getElementsByTagName("Initialisation").item(0);
             String initContent = initialisationElement.getTextContent();
@@ -96,17 +96,16 @@ public class XmlParser{
                     }
                     d.set(1, intCoord);
                 }
-                System.out.println("Initialisation completed");
+                System.out.println("Initialisation terminer");
             }else{
-                System.out.println("Initialisation is empty");
+                System.out.println("erreur initialisation vide");
             }
-            System.out.println("Initialisation completed");
 
             Element initialisationRandomElement = (Element) doc.getElementsByTagName("InitialisationRandom").item(0);
             if (initialisationRandomElement != null){
                 int percentage = Integer.parseInt(initialisationRandomElement.getTextContent());
                 initializeRandomCells(percentage);
-                System.out.println("InitialisationRandom completed with " + percentage + "% cells set.");
+                System.out.println("InitialisationRandom avec " + percentage + "% cellule.");
             }
         }catch (Exception ex){
             ex.printStackTrace();
