@@ -7,5 +7,5 @@
     </Voisinage>
     <Regle>OU(SI(EQ(COMPTER(G8E),3),1,0),SI(EQ(COMPTER(G8),3),1,0))</Regle>
     <Initialisation></Initialisation>
-    <InitialisationRandom>50</InitialisationRandom>
+    <InitialisationRandom>15</InitialisationRandom>
 </Xmlconfig>

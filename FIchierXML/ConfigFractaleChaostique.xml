@@ -3,8 +3,12 @@
     <DimensionSize>{1000}</DimensionSize>
     <Coupe>{:}</Coupe>
     <Voisinage>
-        <GC5>{{-1},{-2},{0},{1},{2}}</GC5>
+        <G1>{{-2},{-1},{0}}</G1>
+        <G2>{{-2},{0}}</G2>
+        <G3>{{-1},{-2},{0},{1},{2}}</G3>
+        <G4C>{{-2},{0},{2}}</G4C>
+        <G5>{{-1},{1}}</G5>
     </Voisinage>
-    <Regle></Regle>
-    <Initialisation>{50}</Initialisation>
+    <Regle>OU(OU(EQ(COMPTER(G1),1),EQ(COMPTER(G3),4)),ET(EQ(COMPTER(G5),1),EQ(COMPTER(G4C),2)))</Regle>
+    <Initialisation>{{0}}</Initialisation>
 </Xmlconfig>

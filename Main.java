@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Main{
     public static void main(String[] args){
-        Interface inter = new Interface(100,100,8);
+        Interface inter = new Interface(200,200,8);
         while(inter.getPath() == null){
             System.out.println("Waiting for a file to be selected");
             continue;
@@ -34,21 +34,21 @@ public class Main{
         System.out.println(tab[0]);
         while(true){
             if(tab.length == 1){
-                for(int i=0;i< 100;i++){
+                for(int i=0;i< 200;i++){
                     try{
                         Thread.sleep(100);
                     }catch(InterruptedException ex){
                         System.out.println("erreur");
                     }
-                    for(int j = 0; j < 100; j++){
+                    for(int j = 0; j < 200; j++){
                         inter.tuerCase(j,i);
                         incr[x] = j + inter.getViewX();
                         if(d.get(incr) == 1){
                             inter.colorierCase(j,i);
                         }
                     }
-                    if(inter.getPlay())
-                        e.run(tab);
+                    while(!inter.getPlay()){System.out.println("waiting for play");}
+                    e.run(tab);
                     inter.repaint();
                 }
             }
@@ -58,8 +58,8 @@ public class Main{
                 }catch(InterruptedException ex){
                     System.out.println("erreur");
                 }
-                for(int i=0;i< 100;i++){
-                    for(int j = 0; j < 100; j++){
+                for(int i=0;i< 200;i++){
+                    for(int j = 0; j < 200; j++){
                         inter.tuerCase(j,i);
                         incr[y] = i + inter.getViewY();
                         incr[x] = j + inter.getViewX();

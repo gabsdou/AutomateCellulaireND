@@ -5,6 +5,6 @@ public class Non extends Operateur{
         super(true);
     }
     public int calcule(int[] arg){
-        return ~arg[0];
+        return 1 - arg[0];
     }
 }

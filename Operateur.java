@@ -32,7 +32,7 @@ public abstract class Operateur{
     }
 
     public static Operateur buildTree(String s, int index, Dictionary<String,Voisinage> gk){
-        if(s.charAt(0) == ','){
+        if(s.charAt(0) == ',' || s.charAt(0) == '('){
             s = s.substring(1,s.length());
         }
         try{

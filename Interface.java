@@ -21,7 +21,7 @@ public class Interface extends JPanel
 	private int[][] casesAColorier;
 	private int viewX = 0; // Coordonnée x de la vue
 	private int viewY = 0; // Coordonnée y de la vue
-	private static final int VIEW_SIZE = 100; // Taille de la vue
+	private static final int VIEW_SIZE = 200; // Taille de la vue
 	private float gradient = 0.0f;
 	private Vector<String> xmlFileNames = new Vector<>();
 	private String path = null;
@@ -47,7 +47,7 @@ public class Interface extends JPanel
 
 		window = new JFrame();
 
-		window.setSize(largeur*taille_case + 25, hauteur*taille_case + 25);
+		window.setSize(largeurs*taille_case + 25, hauteurs*taille_case + 25);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBackground(Color.getHSBColor(0,0f, 0.140f));
 		window.setFocusable(true);
@@ -95,7 +95,7 @@ public class Interface extends JPanel
         window.add(scrollPane, BorderLayout.CENTER);
 		window.setVisible(true);
 		window.add(this);
-		window.add(monBouton, "South");
+		window.add(monBouton, "North");
 		window.setVisible(true);
 	}
 
