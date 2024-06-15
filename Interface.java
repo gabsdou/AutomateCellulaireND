@@ -21,7 +21,7 @@ public class Interface extends JPanel
 	private int[][] casesAColorier;
 	private int viewX = 0; // Coordonnée x de la vue
 	private int viewY = 0; // Coordonnée y de la vue
-	private static final int VIEW_SIZE = 200; // Taille de la vue
+	public static int VIEW_SIZE = 200; // Taille de la vue
 	private float gradient = 0.0f;
 	private Vector<String> xmlFileNames = new Vector<>();
 	private String path = null;
@@ -33,6 +33,7 @@ public class Interface extends JPanel
 		this.largeur = 100;
 		this.hauteur = 100;
 		this.taille_case = taille_case;
+		VIEW_SIZE = VIEW_SIZE * (8/taille_case)-1;
 		casesAColorier = new int[VIEW_SIZE][VIEW_SIZE];
 		JButton monBouton = new JButton("STOP");
 		monBouton.addActionListener(new ActionListener() {
@@ -47,7 +48,7 @@ public class Interface extends JPanel
 
 		window = new JFrame();
 
-		window.setSize(largeurs*taille_case + 25, hauteurs*taille_case + 25);
+		window.setSize(largeurs*8 + 25, hauteurs*8 + 25);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBackground(Color.getHSBColor(0,0f, 0.140f));
 		window.setFocusable(true);

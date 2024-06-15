@@ -1,0 +1,14 @@
+<Xmlconfig>
+    <Dimension>1</Dimension>
+    <DimensionSize>{1000}</DimensionSize>
+    <Coupe>{:}</Coupe>
+    <Voisinage>
+        <G1>{{-2},{-1},{0}}</G1>
+        <G2>{{-2},{0}}</G2>
+        <G3>{{-1},{-2},{0},{1},{2}}</G3>
+        <G4C>{{-2},{0},{2}}</G4C>
+        <G5>{{-1},{1}}</G5>
+    </Voisinage>
+    <Regle>ET(OU(EQ(COMPTER(G2),1),EQ(COMPTER(G3),3)),OU(SUPEQ(COMPTER(G5),1),EQ(COMPTER(G4C),1)))</Regle>
+    <Initialisation>{{375}}</Initialisation>
+</Xmlconfig>
