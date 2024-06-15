@@ -2,7 +2,13 @@ import java.util.*;
 
 public class Main{
     public static void main(String[] args){
-        XmlParser xml = new XmlParser(args[0]);
+        Interface inter = new Interface(100,100,8);
+        while(inter.getPath() == null){
+            System.out.println("Waiting for a file to be selected");
+            continue;
+        }
+        System.out.println(inter.getPath() + " selected");
+        XmlParser xml = new XmlParser(inter.getPath());
         int[] incr = xml.getCoupe();
         int x = -1;
         int y = -1;
@@ -18,6 +24,7 @@ public class Main{
             }
 
         }
+
         Dimension d = xml.getDimension();
         Operateur op = xml.getOperateur();
         Execution e = new Execution(op,d);
@@ -25,18 +32,8 @@ public class Main{
         Dimension.getDimSize(d, coord);
         int[] tab = coord.stream().mapToInt(i -> i).toArray();
         System.out.println(tab[0]);
-        Interface inter = null;
-        if(tab.length == 1){
-            inter = new Interface(tab[x],tab[x],8);
-        }
-        else{
-            inter = new Interface(tab[y],tab[x],8);
-        }
         while(true){
-            while(inter.getPlay() == false){
-                continue;
-            }
-            if(tab.length == 1){//TODO : REPARER
+            if(tab.length == 1){
                 for(int i=0;i< 100;i++){
                     try{
                         Thread.sleep(100);
@@ -50,7 +47,8 @@ public class Main{
                             inter.colorierCase(j,i);
                         }
                     }
-                    e.run(tab);
+                    if(inter.getPlay())
+                        e.run(tab);
                     inter.repaint();
                 }
             }
@@ -75,7 +73,8 @@ public class Main{
                 }catch(InterruptedException ex){
                     System.out.println("erreur");
                 }
-                e.run(tab);
+                if(inter.getPlay())
+                    e.run(tab);
                 inter.repaint();
             }
         }

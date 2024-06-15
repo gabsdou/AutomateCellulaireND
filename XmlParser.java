@@ -46,7 +46,13 @@ public class XmlParser{
                 }
             }
             System.out.println("Coupe created");
-            gk = new Hashtable<>();
+            gk = new Hashtable<String,Voisinage>();
+            //voisinages par défaut
+            gk.put("G0",new Voisinage(1, 1, new int[][]{{0}}));
+            gk.put("G2",new Voisinage(3, 1, new int[][]{{1},{0},{-1}}));
+            gk.put("G4",new Voisinage(5, 2, new int[][]{{0,0},{1,0},{-1,0},{0,1},{0,-1}}));
+            gk.put("G8",new Voisinage(9, 2, new int[][]{{-1,-1},{0,-1},{1,-1},{-1,0},{1,0},{-1,1},{0,1},{1,1},{0,0}}));
+            gk.put("G26",new Voisinage(27, 3, new int[][]{{0,0,0},{-1,-1,0},{0,-1,0},{1,-1,0},{-1,0,0},{1,0,0},{-1,1,0},{0,1,0},{1,1,0},{0,0,0},{-1,-1,1},{0,-1,1},{1,-1,1},{-1,0,1},{1,0,1},{-1,1,1},{0,1,1},{1,1,1},{0,0,1},{-1,-1,-1},{0,-1,-1},{1,-1,-1},{-1,0,-1},{1,0,-1},{-1,1,-1},{0,1,-1},{1,1,-1},{0,0,-1}}));
 
             NodeList voisinageList = doc.getElementsByTagName("Voisinage").item(0).getChildNodes();
             for(int i = 0; i < voisinageList.getLength(); i++){
@@ -66,7 +72,8 @@ public class XmlParser{
                         voisinageArray[j] = intPoint;
                     }
                     Voisinage v = new Voisinage(voisinageArray.length, voisinageArray[0].length, voisinageArray);
-                    gk.put(name, v);
+                    if(!((Hashtable<String,Voisinage>)gk).containsKey(name))
+                        gk.put(name, v);
                 }
             }
             System.out.println("Voisinage created");

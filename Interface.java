@@ -4,10 +4,16 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.util.Vector;
+import java.awt.BorderLayout;
 public class Interface extends JPanel
 {
 	private int largeur, hauteur, taille_case;
@@ -17,7 +23,10 @@ public class Interface extends JPanel
 	private int viewY = 0; // Coordonnée y de la vue
 	private static final int VIEW_SIZE = 100; // Taille de la vue
 	private float gradient = 0.0f;
-	JFrame window ;
+	private Vector<String> xmlFileNames = new Vector<>();
+	private String path = null;
+	private JScrollPane scrollPane;	
+	JFrame window;
 
 	public Interface(int largeurs, int hauteurs, int taille_case)
 	{
@@ -29,7 +38,6 @@ public class Interface extends JPanel
 		monBouton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				play = !play;
-
 				refocus();
 			}
 		});
@@ -39,13 +47,12 @@ public class Interface extends JPanel
 
 		window = new JFrame();
 
-		window.setSize(largeur*taille_case+50, hauteur*taille_case+50);
+		window.setSize(largeur*taille_case + 25, hauteur*taille_case + 25);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBackground(Color.getHSBColor(0,0f, 0.176f));
-		window.add(this);
-		window.add(monBouton, "South");
+		this.setBackground(Color.getHSBColor(0,0f, 0.140f));
 		window.setFocusable(true);
 		window.requestFocusInWindow();
+		window.setLayout(new BorderLayout());
 		window.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				int key = e.getKeyCode();
@@ -66,12 +73,43 @@ public class Interface extends JPanel
 			}
 		});
 		
+		
+
+		loadXmlFileNames();
+        JList<String> fileList = new JList<>(xmlFileNames);
+        fileList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        fileList.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                String selectedFile = fileList.getSelectedValue();
+                System.out.println("Fichier sélectionné : " + selectedFile);
+                path = selectedFile;
+
+            }
+        });
+		
+        scrollPane = new JScrollPane(fileList);
+		window.validate();
+        window.repaint();
+        window.add(scrollPane, BorderLayout.CENTER);
+		window.setVisible(true);
+		window.add(this);
+		window.add(monBouton, "South");
 		window.setVisible(true);
 	}
 
 
 	public void refocus(){
 		window.requestFocusInWindow();
+	}
+
+	public String getPath(){
+		if(path == null) return null;
+		window.remove(scrollPane);
+		window.setLayout(new BorderLayout());
+		window.validate();
+        window.repaint();
+		window.requestFocusInWindow();
+		return "FichierXml/" + path;
 	}
 
 
@@ -107,10 +145,10 @@ public class Interface extends JPanel
 		gradient += 0.01f;
 		g.setColor(Color.BLACK);
 		g.drawRect(taille_case, taille_case, VIEW_SIZE*taille_case,VIEW_SIZE*hauteur*taille_case);
-		for (int i = taille_case; i <= VIEW_SIZE*taille_case; i += taille_case) {
+		for (int i = 0; i <= VIEW_SIZE*taille_case; i += taille_case) {
 			g.drawLine(i, taille_case, i, VIEW_SIZE*taille_case+taille_case);
 		}
-		for (int i = taille_case; i <= VIEW_SIZE*taille_case; i += taille_case) {
+		for (int i = 0; i <= VIEW_SIZE*taille_case; i += taille_case) {
 			g.drawLine(taille_case, i, VIEW_SIZE*taille_case+taille_case, i);
 		}
 	}
@@ -130,4 +168,22 @@ public class Interface extends JPanel
 	{
 		return hauteur;
 	}
+	private void loadXmlFileNames() {
+        File folder = new File("FichierXml");
+        File[] listOfFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".xml"));
+
+        if (listOfFiles != null) {
+            for (File file : listOfFiles) {
+                if (file.isFile()) {
+                    xmlFileNames.add(file.getName());
+					System.out.println(file.getName());
+                }
+            }
+        }
+		else{
+			System.out.println("Pas de fichier xml");
+		}
+    }
 }
+
+
