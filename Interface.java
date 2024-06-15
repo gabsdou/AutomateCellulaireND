@@ -109,7 +109,7 @@ public class Interface extends JPanel
 		window.validate();
         window.repaint();
 		window.requestFocusInWindow();
-		return "FichierXml/" + path;
+		return "FichierXML/" + path;
 	}
 
 
@@ -169,7 +169,7 @@ public class Interface extends JPanel
 		return hauteur;
 	}
 	private void loadXmlFileNames() {
-        File folder = new File("FichierXml");
+        File folder = new File("FichierXML");
         File[] listOfFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".xml"));
 
         if (listOfFiles != null) {
